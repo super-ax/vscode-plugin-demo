@@ -1,0 +1,152 @@
+{
+    "name": "vscode-plugin-demo",
+    "displayName": "vscode-plugin-demo",
+    "description": "VSCode插件demo",
+    "keywords": [
+        "vscode",
+        "plugin",
+        "demo"
+    ],
+    "version": "0.0.1",
+    "publisher": "vscodepluginerjyadm",
+    "engines": {
+        "vscode": "^1.27.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "icon": "images/icon.png",
+    "activationEvents": [
+        "*"
+    ],
+    "main": "./src/extension",
+    "contributes": {
+        "configuration": {
+            "type": "object",
+            "title": "Code插件demo",
+            "properties": {
+                "vscodePluginDemo.yourName": {
+                    "type": "string",
+                    "default": "guest",
+                    "description": "你的名字"
+                },
+                "vscodePluginDemo.showTip": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "启动时显示自定义欢迎页"
+                }
+            }
+        },
+        "commands": [
+            {
+                "command": "extension.sayHello",
+                "title": "Hello，小爱同学"
+            },
+            {
+                "command": "extension.demo.openWebview",
+                "title": "打开WebView"
+            },
+            {
+                "command": "extension.demo.showWelcome",
+                "title": "显示自定义欢迎页"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "extension.sayHello",
+                "key": "ctrl+f10",
+                "mac": "cmd+f10",
+                "when": "editorTextFocus"
+            },
+            {
+                "command": "extension.demo.openWebview",
+                "key": "ctrl+f9",
+                "mac": "cmd+f9",
+                "when": "editorTextFocus"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "when": "editorFocus",
+                    "command": "extension.sayHello",
+                    "group": "navigation@6"
+                },
+                {
+                    "command": "extension.demo.openWebview",
+                    "group": "navigation"
+                }
+            ],
+            "explorer/context": [
+                {
+                    "command": "extension.demo.openWebview",
+                    "group": "navigation"
+                }
+            ]
+        },
+        "snippets": [
+            {
+                "language": "javascript",
+                "path": "./snippets/javascript.json"
+            },
+            {
+                "language": "html",
+                "path": "./snippets/html.json"
+            }
+        ],
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "testview001",
+                    "title": "菜单1",
+                    "icon": "images/menuIcon.svg"
+                },{
+                    "id": "testview002",
+                    "title": "视菜单2",
+                    "icon": "images/menuIcon2.svg"
+                }
+            ]
+        },
+        "views": {
+            "testview001": [
+                {
+                    "id": "testview1",
+                    "name": "视图"
+                },
+                {
+                    "id": "testview2",
+                    "name": "组件树"
+                },
+                {
+                    "id": "testview3",
+                    "name": "大纲"
+                }
+            ],
+            "testview002": [
+                {
+                    "id": "testview4",
+                    "name": "视图"
+                },
+                {
+                    "id": "testview5",
+                    "name": "组件树"
+                },
+                {
+                    "id": "testview6",
+                    "name": "大纲"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6",
+        "eslint": "^4.11.0",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42"
+    }
+}
